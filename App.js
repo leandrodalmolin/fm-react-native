@@ -1,21 +1,63 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.text}>
+          Here are some boxes of different colours
+        </Text>
+        <View style={[styles.box, styles.cyan]}>
+          <Text style={styles.boxText}>Cyan</Text>
+        </View>
+        <View style={[styles.box, styles.blue]}>
+          <Text style={styles.boxText}>Blue</Text>
+        </View>
+        <View style={[styles.box, styles.magenta]}>
+          <Text style={styles.boxText}>Magenta</Text>
+        </View>
+        <View style={[styles.box, styles.orange]}>
+          <Text style={styles.boxText}>Orange</Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+  },
+  container: {
+    paddingHorizontal: 10,
+    paddingTop: 40,
+    gap: 10,
+  },
+  box: {
+    padding: 10,
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  boxText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  cyan: {
+    backgroundColor: '#2aa198',
+  },
+  blue: {
+    backgroundColor: '#268bd2',
+  },
+  magenta: {
+    backgroundColor: '#d33682',
+  },
+  orange: {
+    backgroundColor: '#cb4b16',
   },
 });
+
+export default App;
