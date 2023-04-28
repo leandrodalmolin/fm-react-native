@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useState } from 'react';
 import {
   View,
@@ -6,14 +7,21 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
+  Switch,
 } from 'react-native';
 
-const ColorPaletteModal = () => {
+const ColorPaletteModal = ({ navigation }) => {
   const [name, setName] = useState('');
 
   const handleSubmit = useCallback(() => {
     if (!name) {
       Alert.alert('Please enter a palette name');
+    } else {
+      const newColorPalette = {
+        paletteName: name,
+        colors: [],
+      };
+      navigation.navigate('Home', { newColorPalette });
     }
   }, [name]);
 
@@ -26,6 +34,10 @@ const ColorPaletteModal = () => {
         onChangeText={setName}
         placeholder="Palette name"
       />
+      <View style={styles.color}>
+        <Text>Color Name</Text>
+        <Switch value={true} onValueChange={() => {}} />
+      </View>
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
@@ -59,6 +71,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
+  },
+  color: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
   },
 });
 
